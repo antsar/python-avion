@@ -44,8 +44,12 @@ class avion:
         self.lowhandle = characteristic.getHandle()
       elif characteristic.uuid == "c4edc000-9daf-11e3-8004-00025b000b00":
         self.highhandle = characteristic.getHandle()
-  def set_brightness(self, brightness):
-    packet = bytearray([0x80, 0x80, 0x73, 0x00, 0x0a, 0x00, 0x00, 0x00, brightness, 0x00, 0x00, 0x00, 0x00])
+  def set_brightness(self, brightness, object_id = 0):
+    obj_a = obj_b = 0x00
+    if object_id:
+      obj_a = 0x7f + object_id
+      obj_b = 0x80
+    packet = bytearray([obj_a, obj_b, 0x73, 0x00, 0x0a, 0x00, 0x00, 0x00, brightness, 0x00, 0x00, 0x00, 0x00])
     csrpacket = csrmesh.make_packet(self.password, csrmesh.random_seq(), packet)
     initial = time.time()
     while True:
