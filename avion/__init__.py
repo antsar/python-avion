@@ -33,10 +33,12 @@ def read_packet(sock, handle):
 
 class avion:
   def __init__(self, mac, password):
+    print('avion initializing for {}...'.format(mac))
     self.mac = mac
     password = password.encode("ascii") + bytearray([0x00, 0x4d, 0x43, 0x50])
     self.password = csrmesh.network_key(password)
   def connect(self):
+    print('avion connecting to {}...'.format(self.mac))
     self.device = btle.Peripheral(self.mac, addrType=btle.ADDR_TYPE_PUBLIC)
     characteristics = self.device.getCharacteristics()
     for characteristic in characteristics:
@@ -44,6 +46,7 @@ class avion:
         self.lowhandle = characteristic.getHandle()
       elif characteristic.uuid == "c4edc000-9daf-11e3-8004-00025b000b00":
         self.highhandle = characteristic.getHandle()
+    print('avion connected to {}'.format(self.mac))
   def set_brightness(self, brightness, object_id = 0):
     obj_a = obj_b = 0x00
     if object_id:
