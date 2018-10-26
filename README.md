@@ -1,5 +1,6 @@
-Python control for Avion bluetooth dimmers and switches
-==========================================
+# Python control for Avi-on bluetooth dimmers and switches
+
+**antsar's fork** - this is a fork of the [Avi-On library written by Matthew Garrett](https://github.com/mjg59/python-avion). This fork aims to improve Home Assistant support and otherwise clean up the code.
 
 A simple Python API for controlling [Avi-on](http://www.avi-on.com/) Bluetooth dimmers and switches. This code makes use of the PyBT2 branch of Mike Ryan's [PyBT](http://github.com/mikeryan/PyBT) and depends on [csrmesh](https://github.com/nkaminski/csrmesh/).
 
